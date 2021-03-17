@@ -1,3 +1,5 @@
+package PolyonomialCalculator;
+
 import java.util.*;
 import static java.lang.Math.*;
 
@@ -8,7 +10,6 @@ public class Operations {
     }
 
     public Polynomial addition(Polynomial input1, Polynomial input2){
-        System.out.println("operations addition");
         List<Monomial> output = new ArrayList<>();
         int outputRank = input1.getRank() - input2.getRank();
         for(Monomial entry1 : input1.getMonomials()){

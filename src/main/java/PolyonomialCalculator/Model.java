@@ -1,4 +1,4 @@
-// independent from the controller and view
+package PolyonomialCalculator;// independent from the controller and view
 // this is where the magic happens
 
 import java.util.*;
@@ -46,29 +46,29 @@ public class Model {
         List<Monomial> monomialList = new ArrayList<>();
 
         Pattern pattern = Pattern.compile("[+-]?((\\d+(\\.\\d+)?)\\**)?x?(\\^\\d+)?", Pattern.CASE_INSENSITIVE);
-        Matcher matcherPolynomial1 = pattern.matcher(pol);
+        Matcher matcherPolynomial = pattern.matcher(pol);
 
         Pattern patternCoeficient = Pattern.compile("[+-]?(\\d+(\\.\\d+)?)?", Pattern.CASE_INSENSITIVE);
-        Pattern patternRang = Pattern.compile("\\d+", Pattern.CASE_INSENSITIVE);
+        Pattern patternRank = Pattern.compile("\\d+", Pattern.CASE_INSENSITIVE);
 
         double coef = 0;
         int rank = 0;
         int maxRank = 0;
 
-        String[] matches = matcherPolynomial1.results().map(MatchResult::group).toArray(String[]::new);
+        String[] matches = matcherPolynomial.results().map(MatchResult::group).toArray(String[]::new);
         for (String entry : matches)
         {
-            if(entry == ""){
+            if(entry.equals("")){
                 break;
             }
             Matcher matcherCoeficient = patternCoeficient.matcher(entry);
-            String stringRank = "";
+            String stringRank;
 
             if(matcherCoeficient.find()){
                 try{
                     coef = Double.parseDouble(matcherCoeficient.group());
                 }catch(NumberFormatException exception){
-                    if(matcherCoeficient.group() == "-"){
+                    if(matcherCoeficient.group().equals("-")){
                         coef = -1;
                     }else{
                         coef = 1;
@@ -77,12 +77,12 @@ public class Model {
             }
 
             stringRank = entry.substring(matcherCoeficient.end());
-            Matcher matcherRank = patternRang.matcher(stringRank);
+            Matcher matcherRank = patternRank.matcher(stringRank);
             if(matcherRank.find()){
                 try {
                     rank = Integer.parseInt(matcherRank.group());
                 }catch(NumberFormatException exception){
-                    if(matcherRank.group() == "x"){
+                    if(matcherRank.group().equals("x")){
                         rank = 1;
                     }
                 }

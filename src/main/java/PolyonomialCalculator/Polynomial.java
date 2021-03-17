@@ -1,9 +1,11 @@
+package PolyonomialCalculator;
+
 import java.util.*;
 
-public class Polynomial {
+public class Polynomial extends Monomial {
     private int rank;
     private List<Monomial> monomials = new ArrayList<>();
-    //private HashMap<Integer, Monomial> monomials = new HashMap<Integer, Monomial>();    // the polynomial can be written as a sum of monomials
+    //private HashMap<Integer, PolyonomialCalculator.Monomial> monomials = new HashMap<Integer, PolyonomialCalculator.Monomial>();    // the polynomial can be written as a sum of monomials
                                                                                  // so each monomial can be kept in a hashmap, where the index is the rank of the coeficient
 
     Operations operation = new Operations();
@@ -18,10 +20,9 @@ public class Polynomial {
         this.rank = rank;
     }
 
-    // -------------------- Operations -------------------- \\
+    // -------------------- PolyonomialCalculator.Operations -------------------- \\
 
     public Polynomial add(Polynomial toAdd){
-        System.out.println("polynomial add");
         return operation.addition(this, toAdd);
     }
 
@@ -57,7 +58,7 @@ public class Polynomial {
         return monomials;
     }
 
-    public void setMonomials(List<Monomial> Monomials) {
+    public void setMonomials(List<Monomial> monomials) {
         this.monomials = monomials;
     }
 
@@ -75,7 +76,7 @@ public class Polynomial {
 /*
     protected int getMaxRank(){
         int maxRank = 0;
-        for(Monomial entry: monomials){
+        for(PolyonomialCalculator.Monomial entry: monomials){
             if(maxRank < entry.getRank() && entry.getCoef() != 0){
                 maxRank = entry.getRank();
             }

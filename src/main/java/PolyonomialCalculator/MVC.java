@@ -1,6 +1,4 @@
-// creates and combines the three main components: Model, Controller and View
-
-import java.util.regex.*;
+package PolyonomialCalculator;// creates and combines the three main components: PolyonomialCalculator.Model, PolyonomialCalculator.Controller and PolyonomialCalculator.View
 
 public class MVC {
     public static void main(String [] args){

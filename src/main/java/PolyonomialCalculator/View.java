@@ -1,3 +1,4 @@
+package PolyonomialCalculator;
 // this is only for the user interface
 // the appearance
 
@@ -5,15 +6,15 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class View extends JFrame{
+public class View{
     JFrame frame = new JFrame("Polynomial Calculator");
 
     JPanel panelInput1 = new JPanel(new FlowLayout());                     // the first panel contains a label and the first textfield
-    JLabel lblInput1 = new JLabel("Insert first Polynomial: ");       // where the user is going to write the first polynomial
+    JLabel lblInput1 = new JLabel("Insert first polynomial: ");       // where the user is going to write the first polynomial
     JTextField txtInput1 = new JTextField(15);
 
     JPanel panelInput2 = new JPanel(new FlowLayout());                     // same as before
-    JLabel lblInput2 = new JLabel("Insert second Polynomial: ");
+    JLabel lblInput2 = new JLabel("Insert second polynomial: ");
     JTextField txtInput2 = new JTextField(15);
 
     JPanel panelInput = new JPanel();
@@ -26,8 +27,6 @@ public class View extends JFrame{
     JButton btnDiv = new JButton("/");
     JButton btnDeriv = new JButton("Derivative");
     JButton btnIntegr = new JButton("Integration");
-
-    JPanel panelOperations = new JPanel();
 
     JPanel panelOutput = new JPanel(new FlowLayout());
 
@@ -46,12 +45,14 @@ public class View extends JFrame{
         panelInput1.setBackground(Color.decode("#191919"));
         lblInput1.setFont(new Font("Open Sans", Font.BOLD, 14));
         lblInput1.setForeground(Color.decode("#f9d43d"));
+        txtInput1.setText("0");
         panelInput1.add(lblInput1);
         panelInput1.add(txtInput1);
 
         panelInput2.setBackground(Color.decode("#191919"));
         lblInput2.setFont(new Font("Open Sans", Font.BOLD, 14));
         lblInput2.setForeground(Color.decode("#f9d43d"));
+        txtInput2.setText("0");
         panelInput2.add(lblInput2);
         panelInput2.add(txtInput2);
 
@@ -92,10 +93,6 @@ public class View extends JFrame{
 
         panelBaseOperations.setLayout(new GridLayout(2, 2));
 
-        panelOperations.add(panelBaseOperations);
-
-        panelOperations.setLayout(new BoxLayout(panelOperations, BoxLayout.Y_AXIS));
-
         // -------------------------------------------------
 
         // ------------------------------------- RESULT PANEL
@@ -115,14 +112,13 @@ public class View extends JFrame{
 
         mainPanel.add(panelInput);
         mainPanel.add(separator);
-        mainPanel.add(panelOperations);
+        mainPanel.add(panelBaseOperations);
         mainPanel.add(separator);
         mainPanel.add(panelOutput);
 
         mainPanel.setBackground(Color.decode("#191919"));
         frame.setContentPane(mainPanel);
         frame.setVisible(true);
-
     }
 
     public String getInput1() {
@@ -163,8 +159,7 @@ public class View extends JFrame{
         btnIntegr.addActionListener(actionListener);
     }
 
-    void showError(String errMessage) {
-        JOptionPane.showMessageDialog(this, errMessage, "Inane error", JOptionPane.ERROR_MESSAGE);
+    public void errorMessage(String msg){
+        JOptionPane.showMessageDialog(frame, msg);
     }
-
 }

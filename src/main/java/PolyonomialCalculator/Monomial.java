@@ -1,3 +1,5 @@
+package PolyonomialCalculator;
+
 public class Monomial {
     private double coef;
     private int rank;
@@ -15,7 +17,7 @@ public class Monomial {
             this.rank = rank;
     }
 
-    // -------------------- Operations -------------------- \\
+    // -------------------- PolyonomialCalculator.Operations -------------------- \\
 
     protected Monomial add(Monomial toAdd){
         return new Monomial(this.coef + toAdd.getCoef(), this.rank);

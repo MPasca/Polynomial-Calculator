@@ -1,3 +1,5 @@
+package PolyonomialCalculator;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,8 +19,17 @@ public class Controller {
         view.addIntegrationListener(new IntegrationListener());
     }
 
-    private void getInput(){
-        this.model = new Model(view.getInput1(), view.getInput2());
+    private void getInput() throws ExceptionIncorrectInput{
+        if(!view.getInput1().equals("")){
+            if(!view.getInput2().equals("")){
+                this.model = new Model(view.getInput1(), view.getInput2());
+            }else{
+                throw new ExceptionIncorrectInput("2nd polynomial");
+            }
+        }else{
+            throw new ExceptionIncorrectInput("1st polynomial");
+        }
+
     }
 
     class AdditionListener implements ActionListener {
@@ -26,8 +37,9 @@ public class Controller {
             try {
                 getInput();
                 view.setTxtOutput(model.addition());
-            } catch (NumberFormatException nfex) {
-                view.showError("Bad input: input1: '" + view.getInput1() + "; input2: " + view.getInput2() + "'");
+            }catch(Exception error){
+                error.printStackTrace();
+                view.errorMessage(error.getMessage());
             }
         }
     }
@@ -37,8 +49,9 @@ public class Controller {
             try {
                 getInput();
                 view.setTxtOutput(model.subtraction());
-            } catch (NumberFormatException nfex) {
-                view.showError("Bad input: input1: '" + view.getInput1() + "; input2: " + view.getInput2() + "'");
+            }catch(Exception error){
+                error.printStackTrace();
+                view.errorMessage(error.getMessage());
             }
         }
     }
@@ -48,20 +61,24 @@ public class Controller {
             try {
                 getInput();
                 view.setTxtOutput(model.multiplication());
-            } catch (NumberFormatException nfex) {
-                view.showError("Bad input: input1: '" + view.getInput1() + "; input2: " + view.getInput2() + "'");
+            }catch(Exception error){
+                error.printStackTrace();
+                view.errorMessage(error.getMessage());
             }
         }
     }
 
     class DivisionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            /*
             try {
                 getInput();
                 view.setTxtOutput(model.division());
-            } catch (NumberFormatException nfex) {
-                view.showError("Bad input: input1: '" + view.getInput1() + "; input2: " + view.getInput2() + "'");
+            }catch(Exception error){
+                error.printStackTrace();
+                view.errorMessage(error.getMessage());
             }
+             */
         }
     }
 
@@ -70,8 +87,9 @@ public class Controller {
             try {
                 getInput();
                 view.setTxtOutput(model.derivative());
-            } catch (NumberFormatException nfex) {
-                view.showError("Bad input: '" + view.getInput1() + "'");
+            }catch(Exception error){
+                error.printStackTrace();
+                view.errorMessage(error.getMessage());
             }
         }
     }
@@ -81,8 +99,9 @@ public class Controller {
             try {
                 getInput();
                 view.setTxtOutput(model.integration());
-            } catch (NumberFormatException nfex) {
-                view.showError("Bad input: '" + view.getInput1() + "'");
+            }catch(Exception error){
+                error.printStackTrace();
+                view.errorMessage(error.getMessage());
             }
         }
     }
