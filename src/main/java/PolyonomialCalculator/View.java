@@ -130,7 +130,11 @@ public class View{
     }
 
     public void setTxtOutput(String output) {
-        this.lblShowOutput.setText(output);
+        if(output.equals("")){
+            this.lblShowOutput.setText("0");
+        }else {
+            this.lblShowOutput.setText(output);
+        }
     }
 
     // ------------------------------------- ADD BUTTON LISTENERS

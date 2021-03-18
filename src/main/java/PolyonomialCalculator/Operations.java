@@ -90,8 +90,9 @@ public class Operations {
 
         Polynomial auxInput1 = new Polynomial(input1.getMonomials(), input1.getRank());
         Polynomial auxInput2 = new Polynomial(input2.getMonomials(), input2.getRank());
-
-        while(auxInput1.getRank() >= auxInput2.getRank()){
+        int rank = auxInput1.getRank();
+        int minRank = auxInput2.getRank();
+        while(rank >= minRank){
             Monomial d = auxInput1.getMaxMonomial();
             Monomial i = auxInput2.getMaxMonomial();
 
@@ -100,10 +101,12 @@ public class Operations {
             output.add(d.div(i));
             Polynomial aux = auxInput2.mul(new Polynomial(c, d.getRank() - i.getRank()));
 
-            auxInput1 = auxInput1.sub(aux);
-            auxInput1.setMonomials(this.checkMonomials(input1.getMonomials()));
-        }
+            rank--;
 
+            auxInput1 = auxInput1.sub(aux);
+            auxInput1.setMonomials(this.checkMonomials(auxInput1.getMonomials()));
+        }
+        System.out.println("Remainder: " + auxInput1.toString());
         return new Polynomial(output, input1.getRank() - input2.getRank());
     }
 

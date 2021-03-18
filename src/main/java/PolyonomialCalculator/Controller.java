@@ -70,7 +70,6 @@ public class Controller {
 
     class DivisionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            /*
             try {
                 getInput();
                 view.setTxtOutput(model.division());
@@ -78,7 +77,6 @@ public class Controller {
                 error.printStackTrace();
                 view.errorMessage(error.getMessage());
             }
-             */
         }
     }
 
